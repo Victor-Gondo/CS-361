@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stock Search</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #16213e;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: left;
+        height: 100vh;
+        margin: 50px
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        color: #ffffff;
+        background-color: #0f4c75; 
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .button:hover {
+        background-color: #3282b8; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Stock Search</h1>
+      <a href="{{ url_for('search') }}"><button class="button">Search</button></a>
+      <a href="{{ url_for('help') }}"><button class="button">Help</button></a>
+    </div>
+  </body>
+</html>

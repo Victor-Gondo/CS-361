@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stock Search</title>
+    <style>
+      body {
+        margin: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #16213e;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        color: #ffffff;
+        background-color: #0f4c75; 
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      label {
+        margin-top: .33em;
+        display: block;
+        color: #ffffff;
+
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search</h1>
+    <p>This is where you search for stocks first input the desired values for the filters provided then click search</p>
+    <form method="POST">
+      <div>
+        <label for="marketCapMin">Minimum Market Cap:</label>
+        <input type="number" id="marketCapMin" name="marketCapMin" step="any" required>
+      </div>
+      <div>
+        <label for="marketCapMax">Maximum Market Cap:</label>
+        <input type="number" id="marketCapMax" name="marketCapMax" step="any" required>
+      </div>
+      <div>
+        <label for="priceMin">Minimum Price:</label>
+        <input type="number" id="priceMin" name="priceMin" step="any" required>
+      </div>
+      <div>
+        <label for="priceMax">Maximum Price:</label>
+        <input type="number" id="priceMax" name="priceMax" step="any" required>
+      </div>
+      <div>
+        <label for="volumeMin">Minimum Volume:</label>
+        <input type="number" id="volumeMin" name="volumeMin" step="any" required>
+      </div>
+      <div>
+        <label for="volumeMax">Maximum Volume:</label>
+        <input type="number" id="volumeMax" name="volumeMax" step="any" required>
+      </div>
+      <div>
+        <button type="submit">Filter</button>
+      </div>
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div>
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% if stocks %}
+      <div>
+        <h2>Stocks that match the given filters:</h2>
+        <ul>
+          {% for stock in stocks %}
+            <li>
+              <p>Symbol: {{ stock[0] }}, Market Cap: {{ stock[1] }}, Price: {{ stock[2] }}, Volume: {{ stock[3] }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <a href="{{ url_for('index') }}"><button class="button">Homepage</button></a>
+  </body>
+</html>
